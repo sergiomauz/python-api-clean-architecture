@@ -1,0 +1,3 @@
+from .get_partner_by_id.get_partner_by_id_use_case import GetPartnerByIdUseCase
+from .search_partners_by_text.search_partners_by_text_use_case import SearchPartnersByTextUseCase
+from .search_partners_by_object.search_partners_by_object_use_case import SearchPartnersByObjectUseCase

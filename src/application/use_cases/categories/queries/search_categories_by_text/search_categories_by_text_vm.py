@@ -1,0 +1,18 @@
+from typing import Optional
+from domain.entities import Category
+from application.commons.vms import BasicVm
+
+
+class SearchCategoriesByTextVm(BasicVm):
+    name: Optional[str] = None
+    description: Optional[str] = None
+
+    @classmethod
+    def map_from_entities(cls, category:Category):
+        return cls(
+            id=category.id if isinstance(category.id, int) else str(category.id),
+            name=category.name,
+            description=category.description,
+            created_at=category.created_at.strftime("%Y-%m-%d %H:%M:%S") if category.created_at else None,
+            modified_at=category.modified_at.strftime("%Y-%m-%d %H:%M:%S") if category.modified_at else None
+        )

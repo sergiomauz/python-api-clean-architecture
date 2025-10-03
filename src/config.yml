@@ -1,0 +1,10 @@
+application:
+  error_catalog: "/home/app/resources/error_catalog.db"
+
+infrastructure:
+  persistence:
+    connection_string: "postgresql+psycopg://postgres:711703@warehouse_inventory_db/db_project"
+  cache:
+    redis_host: "python_redis"
+    redis_port: 6379
+    redis_pass: "eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81"

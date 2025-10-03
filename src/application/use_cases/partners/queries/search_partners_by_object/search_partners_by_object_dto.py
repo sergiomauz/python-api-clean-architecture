@@ -1,0 +1,7 @@
+from application.commons.request_params import ObjectRequestParams
+from .search_partners_by_object_filtering_dto import SearchPartnersByObjectFilteringDto
+from .search_partners_by_object_ordering_dto import SearchPartnersByObjectOrderingDto
+
+
+class SearchPartnersByObjectDto(ObjectRequestParams[SearchPartnersByObjectFilteringDto, SearchPartnersByObjectOrderingDto]):
+    pass

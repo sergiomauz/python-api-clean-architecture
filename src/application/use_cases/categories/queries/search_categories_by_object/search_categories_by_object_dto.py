@@ -1,0 +1,7 @@
+from application.commons.request_params import ObjectRequestParams
+from .search_categories_by_object_filtering_dto import SearchCategoriesByObjectFilteringDto
+from .search_categories_by_object_ordering_dto import SearchCategoriesByObjectOrderingDto
+
+
+class SearchCategoriesByObjectDto(ObjectRequestParams[SearchCategoriesByObjectFilteringDto, SearchCategoriesByObjectOrderingDto]):
+    pass

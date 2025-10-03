@@ -1,0 +1,3 @@
+from .get_product_by_id.get_product_by_id_use_case import GetProductByIdUseCase
+from .search_products_by_text.search_products_by_text_use_case import SearchProductsByTextUseCase
+from .search_products_by_object.search_products_by_object_use_case import SearchProductsByObjectUseCase

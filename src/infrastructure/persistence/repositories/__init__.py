@@ -1,0 +1,5 @@
+
+from .categories_repository_adapter import CategoriesRepositoryAdapter
+from .partners_repository_adapter import PartnersRepositoryAdapter
+from .movements_repository_adapter import MovementsRepositoryAdapter
+from .products_repository_adapter import ProductsRepositoryAdapter

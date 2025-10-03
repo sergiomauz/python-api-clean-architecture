@@ -1,0 +1,16 @@
+debugpy
+psycopg2
+psycopg2-binary
+psycopg[binary]
+requests
+sqlalchemy
+uvicorn
+flask
+flask[async]>=2.2
+Flask-Injector
+fastapi
+alembic
+bcrypt
+dependency_injector
+PyYAML
+python-dateutil

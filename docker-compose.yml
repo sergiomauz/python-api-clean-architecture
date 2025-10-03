@@ -1,0 +1,32 @@
+name: warehouse_inventory
+
+services:  
+  warehouse_inventory_db:
+    image: postgres:${PG_VERSION}
+    container_name: warehouse_inventory_db
+    ports:
+      - "${PG_PORT}:${PG_PORT}"
+    environment:
+      - POSTGRES_DB=${PG_DB}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+
+  warehouse_inventory_api:
+    build: .
+    container_name: warehouse_inventory_api
+    stdin_open: true
+    tty: true    
+    ports:
+      - "${API_PORT}:${API_PORT}"
+      - "${DEBUGPY_PORT}:${DEBUGPY_PORT}"
+    depends_on:
+      - warehouse_inventory_db
+    environment:      
+      - API_PORT=${API_PORT}
+      - DEBUG=1
+    volumes:
+      - ./src:/home/app/src
+      - ./resources:/home/app/resources      
+      - ./data:/home/app/data

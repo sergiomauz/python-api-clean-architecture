@@ -1,0 +1,6 @@
+postgresql/*
+
+data/*
+redis/data/*
+
+*.pyc

@@ -1,0 +1,7 @@
+from application.commons.request_params import ObjectRequestParams
+from .search_movements_by_object_filtering_dto import SearchMovementsByObjectFilteringDto
+from .search_movements_by_object_ordering_dto import SearchMovementsByObjectOrderingDto
+
+
+class SearchMovementsByObjectDto(ObjectRequestParams[SearchMovementsByObjectFilteringDto, SearchMovementsByObjectOrderingDto]):
+    pass

@@ -1,0 +1,2 @@
+from .base_with_id_repository_adapter import BaseWithIdRepositoryAdapter
+from .base_with_id_and_code_repository_adapter import BaseWithIdAndCodeRepositoryAdapter
