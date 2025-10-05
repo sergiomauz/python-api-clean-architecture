@@ -6,7 +6,7 @@ from .bases import BaseWithIdAndCodeModel
 class ProductModel(BaseWithIdAndCodeModel):
     __tablename__ = "products"
     
-    category_id = Column(Integer, ForeignKey("categories.id"), nullable=False)
+    category_id = Column(Integer, ForeignKey("categories.id", ondelete="CASCADE"))
     name = Column(String(75), nullable=False)
     description = Column(String(150), nullable=True)
     

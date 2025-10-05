@@ -16,10 +16,10 @@ class CreateProductUseCase:
     def __init__(self, products_repository:ProductsRepositoryPort, categories_repository:CategoriesRepositoryPort):
         self._products_repository = products_repository
         self._categories_repository = categories_repository
-       
+
     @validate_format_request_before
     async def execute(self, command:CreateProductCommand):
-        existing_category = self._categories_repository.get_by_id_async(command.category_id)
+        existing_category = await self._categories_repository.get_by_id_async(command.category_id)
         if not existing_category:
             raise CustomValidationError(
                 None,
@@ -29,7 +29,7 @@ class CreateProductUseCase:
                     error_message=ErrorConstants.CREATE_PRODUCT_CONTENT00001.error_message
                 )],
                 HTTPStatus.CONFLICT.value)            
-                        
+
         existing_product_by_code = await self._products_repository.get_by_code_async(command.code)
         if existing_product_by_code:
             raise CustomValidationError(
@@ -40,7 +40,7 @@ class CreateProductUseCase:
                     error_message=ErrorConstants.CREATE_PRODUCT_CONTENT00002.error_message
                 )],
                 HTTPStatus.CONFLICT.value)
-                
+
         created_product = await self._products_repository.create_and_commit_async(
             Product(
                 category_id=command.category_id,

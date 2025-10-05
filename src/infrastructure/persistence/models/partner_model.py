@@ -13,4 +13,4 @@ class PartnerModel(BaseWithIdAndCodeModel):
     address = Column(String(500), nullable=False)
     email = Column(String(100), nullable=False)
     
-    movements = relationship("MovementModel", back_populates="partner")
+    movements = relationship("MovementModel", back_populates="partner", cascade="all, delete")

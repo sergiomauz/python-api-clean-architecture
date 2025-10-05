@@ -1,8 +1,8 @@
-"""First migration
+"""first_migration
 
-Revision ID: b4ba72ed2038
+Revision ID: 1a77a016340f
 Revises: 
-Create Date: 2025-09-03 06:24:12.783502
+Create Date: 2025-10-05 10:00:52.431014
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'b4ba72ed2038'
+revision: str = '1a77a016340f'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -35,34 +35,36 @@ def upgrade() -> None:
     sa.Column('phone', sa.String(length=15), nullable=False),
     sa.Column('address', sa.String(length=500), nullable=False),
     sa.Column('email', sa.String(length=100), nullable=False),
+    sa.Column('code', sa.String(length=10), nullable=False),
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('modified_at', sa.DateTime(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('code')
     )
     op.create_table('products',
-    sa.Column('category_id', sa.Integer(), nullable=False),
+    sa.Column('category_id', sa.Integer(), nullable=True),
     sa.Column('name', sa.String(length=75), nullable=False),
     sa.Column('description', sa.String(length=150), nullable=True),
     sa.Column('code', sa.String(length=10), nullable=False),
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('modified_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
+    sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('code')
     )
     op.create_table('movements',
-    sa.Column('partner_id', sa.Integer(), nullable=False),
-    sa.Column('product_id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=100), nullable=False),
+    sa.Column('partner_id', sa.Integer(), nullable=True),
+    sa.Column('product_id', sa.Integer(), nullable=True),
+    sa.Column('movement_date', sa.DateTime(), nullable=False),
     sa.Column('quantity', sa.Float(), nullable=False),
     sa.Column('movement_type', sa.String(length=3), nullable=False),
     sa.Column('id', sa.UUID(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('modified_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['partner_id'], ['partners.id'], ),
-    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
+    sa.ForeignKeyConstraint(['partner_id'], ['partners.id'], ondelete='SET NULL'),
+    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ondelete='SET NULL'),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('id')
     )

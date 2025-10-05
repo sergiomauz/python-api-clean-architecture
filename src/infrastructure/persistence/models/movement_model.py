@@ -6,8 +6,8 @@ from .bases import BaseWithUuidModel
 class MovementModel(BaseWithUuidModel):
     __tablename__ = "movements"
     
-    partner_id = Column(Integer, ForeignKey("partners.id"), nullable=False)
-    product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
+    partner_id = Column(Integer, ForeignKey("partners.id", ondelete="SET NULL"), nullable=True)
+    product_id = Column(Integer, ForeignKey("products.id", ondelete="SET NULL"), nullable=True)
     
     movement_date = Column(DateTime, nullable=False)
     quantity = Column(Float, nullable=False)
