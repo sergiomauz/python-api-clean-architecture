@@ -20,7 +20,6 @@ services:
     tty: true    
     ports:
       - "${API_PORT}:${API_PORT}"
-      - "${DEBUGPY_PORT}:${DEBUGPY_PORT}"
     depends_on:
       - warehouse_inventory_db
     environment:      
